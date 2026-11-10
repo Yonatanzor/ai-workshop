@@ -1,4 +1,5 @@
 <title>AI for MD-PhD Students — Weizmann</title>
+<meta charset="utf-8">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;700&display=swap">
 
@@ -70,7 +71,7 @@ body {
   background: var(--bg);
   color: var(--fg);
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 17px;
   padding-left:  max(0px, env(safe-area-inset-left,  0px));
   padding-right: max(0px, env(safe-area-inset-right, 0px));
   padding-block: 0;
@@ -98,10 +99,10 @@ body::before {
 }
 
 .topbar-inner {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
-  padding-left:  max(24px, env(safe-area-inset-left,  0px));
-  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  padding-left:  max(48px, env(safe-area-inset-left,  0px));
+  padding-right: max(48px, env(safe-area-inset-right, 0px));
   padding-block: 0;
   display: flex;
   align-items: stretch;
@@ -170,10 +171,10 @@ body::before {
 
 /* ── Page shell ─────────────────────────────────────────────── */
 .page {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
-  padding-left:  max(24px, env(safe-area-inset-left,  0px));
-  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  padding-left:  max(48px, env(safe-area-inset-left,  0px));
+  padding-right: max(48px, env(safe-area-inset-right, 0px));
   padding-block: 0;
 }
 
@@ -332,6 +333,20 @@ h1 {
 @media (max-width: 640px) {
   .hero-top { grid-template-columns: 1fr; }
   .hero-meta-box { display: none; }
+}
+
+/* Stats + diagram side by side below the hero text */
+.lifecycle-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 36px;
+}
+
+@media (max-width: 600px) {
+  .lifecycle-row { grid-template-columns: 1fr; }
 }
 
 .lifecycle-wrap {
@@ -762,19 +777,42 @@ footer {
   <section class="hero">
     <div class="hero-top">
     <div>
-      <div class="hero-kicker">Weizmann Institute of Science · MD-PhD Program</div>
+      <div class="hero-kicker">Weizmann Institute of Science &middot; MD-PhD Program</div>
       <h1>AI for<br>MD-PhD Students</h1>
-      <p class="hero-sub">Nine 90-minute sessions covering the main families of AI use in research and medicine — with hands-on notebooks, real datasets, and a critical-thinking challenge built into every session.</p>
+      <p class="hero-sub">Nine 90-minute sessions covering the main families of AI use in research and medicine &mdash; with hands-on notebooks, real datasets, and a critical-thinking challenge built into every session.</p>
       <div class="pill-row">
         <span class="pill green">Open for educational use</span>
-        <span class="pill">First semester · 2026</span>
+        <span class="pill">First semester &middot; 2026</span>
         <span class="pill">CC BY-NC 4.0</span>
       </div>
     </div>
     </div><!-- /hero-top -->
 
-    <!-- AI Lifecycle diagram -->
-    <div class="lifecycle-wrap">
+    <!-- Stats + Diagram row -->
+    <div class="lifecycle-row">
+
+      <!-- Stats on the left -->
+      <div class="hero-meta-box" style="min-width:160px">
+        <div class="stat-row">
+          <span class="stat-num">9</span>
+          <span class="stat-label">Sessions</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">90'</span>
+          <span class="stat-label">Per session</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Notebooks</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Capstone showcase</span>
+        </div>
+      </div>
+
+      <!-- Diagram on the right -->
+      <div class="lifecycle-wrap" style="border-top:none; padding-top:0">
       <div class="lifecycle-label">The AI Lifecycle</div>
       <svg class="lifecycle-svg" viewBox="0 0 320 310" xmlns="http://www.w3.org/2000/svg" aria-label="AI Lifecycle diagram">
         <defs>
@@ -863,7 +901,7 @@ footer {
         <line x1="160" y1="262" x2="160" y2="274" stroke="#c97d1e" stroke-width="1.6" stroke-linecap="round"/>
         <polyline points="155,270 160,276 165,270" stroke="#c97d1e" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         <text class="lc-label" x="160" y="308">Deploy-</text>
-        <text class="lc-sub"   x="160" y="317">ment</text>
+        <text class="lc-label" x="160" y="320">ment</text>
 
         <!-- ── NODE 5: 8 o'clock — Model Training (orange) ── -->
         <circle cx="73" cy="217" r="30" class="icon-bg-o"/>
@@ -896,27 +934,8 @@ footer {
         <span class="lc-dot" style="background:#e8a93a"></span><span>Data &amp; Training</span>
         <span class="lc-dot" style="background:#7ba8d4"></span><span>Validation &amp; Monitoring</span>
       </div>
-    </div>
-
-    </div><!-- /inner text div -->
-    <div class="hero-meta-box">
-      <div class="stat-row">
-        <span class="stat-num">9</span>
-        <span class="stat-label">Sessions</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-num">90'</span>
-        <span class="stat-label">Per session</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-num">5</span>
-        <span class="stat-label">Notebooks</span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-num">1</span>
-        <span class="stat-label">Capstone showcase</span>
-      </div>
-    </div>
+    </div><!-- /lifecycle-wrap -->
+    </div><!-- /lifecycle-row -->
   </section>
 
   <!-- Two threads -->

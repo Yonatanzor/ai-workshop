@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# LibreOffice temp
+*.~lock.*
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Large video (optional — remove this line if you want to track it)

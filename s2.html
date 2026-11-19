@@ -283,8 +283,8 @@ footer{background:#fff;border-top:1px solid var(--border);
 
 <div class="tab-strip">
   <div class="tab-inner">
-    <a class="tab-link active" href="#">Overview</a>
-    <a class="tab-link" href="#prereading">Pre-reading</a><a class="tab-link" href="#activity">Activity</a><a class="tab-link" href="#challenge">Challenge</a>
+    <a class="tab-link active" href="#objectives" data-tab="objectives">Overview</a>
+    <a class="tab-link" href="#prereading" data-tab="prereading">Pre-reading</a><a class="tab-link" href="#activity" data-tab="activity">Activity</a><a class="tab-link" href="#challenge" data-tab="challenge">Challenge</a>
   </div>
 </div>
 
@@ -341,4 +341,36 @@ footer{background:#fff;border-top:1px solid var(--border);
   <div class="footer-sub">Weizmann Institute of Science &middot; MD-PhD Program &middot; 2026</div></div>
   <div class="footer-r">CC&nbsp;BY-NC&nbsp;4.0 &middot; <a href="https://github.com/Yonatanzor/ai-workshop">Source on GitHub</a></div>
 </div></footer>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab-link[data-tab]');
+  var sections = ['objectives','prereading','activity','challenge'];
+
+  function setActive(id) {
+    tabs.forEach(function(t){
+      t.classList.toggle('active', t.dataset.tab === id);
+    });
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      setActive(t.dataset.tab);
+    });
+  });
+
+  // Update active tab based on scroll position
+  window.addEventListener('scroll', function(){
+    var scrollY = window.scrollY + 120; // offset for sticky bars
+    var current = sections[0];
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.getBoundingClientRect().top + window.scrollY <= scrollY){
+        current = id;
+      }
+    });
+    setActive(current);
+  }, {passive: true});
+})();
+</script>
 </body></html>

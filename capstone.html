@@ -1,0 +1,445 @@
+<!doctype html><html lang="en"><head>
+<title>Capstone Showcase | AI for MD-PhD</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap">
+<style>
+:root {
+  --blue:       #393E39;
+  --blue-dark:  #252825;
+  --blue-mid:   #4A504A;
+  --bg:         #FFFFFF;
+  --bg-page:    #F5F6F5;
+  --bg-card:    #FFFFFF;
+  --fg:         #1A1A1A;
+  --fg-m:       #3D3D3D;
+  --fg-s:       #6B6B6B;
+  --fg-xs:      #9E9E9E;
+  --border:     #DDE3DD;
+  --border-s:   #EDF0ED;
+  --green:      #AEC8AE;
+  --green-bg:   #EEF5EE;
+  --yellow:     #A07B2A;
+  --yellow-bg:  #FDF8EE;
+  --accent2:    #AEC8AE;
+  --r:          4px;
+  --r-lg:       8px;
+  --shadow-sm:  0 1px 4px rgba(0,0,0,.1);
+  --shadow:     0 2px 8px rgba(0,0,0,.12);
+  font-family: 'Inter', system-ui, sans-serif;
+  color-scheme: light;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg-page);color:var(--fg);font-size:16px;line-height:1.6}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+
+/* ── Topbar ── */
+.topbar{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;
+  padding:0 32px;min-height:60px;gap:0}
+.site-brand{font-weight:700;font-size:1.125rem;color:var(--blue);
+  display:flex;align-items:center;gap:8px;margin-right:32px;flex-shrink:0}
+.site-brand svg{width:28px;height:28px}
+.site-brand:hover{text-decoration:none}
+.topnav{display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;flex:1}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{font-size:.875rem;font-weight:500;color:var(--fg-s);padding:0 14px;
+  height:60px;display:flex;align-items:center;border-bottom:3px solid transparent;
+  white-space:nowrap;transition:color .15s,border-color .15s}
+.topnav a:hover{color:var(--blue);text-decoration:none}
+.topnav a.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+.topnav-right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.btn-enroll{background:#AEC8AE;color:#252825;font-size:.875rem;font-weight:600;
+  padding:9px 20px;border-radius:var(--r);border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px}
+.btn-enroll:hover{background:var(--blue-dark);text-decoration:none;color:#fff}
+
+/* ── Page layout ── */
+.page-wrap{max-width:1200px;margin:0 auto;padding:0 32px 48px}
+
+/* ── Course hero ── */
+.course-hero{background:linear-gradient(to right,#252825 0%,#393E39 50%,#4A6B4A 100%);
+  color:#fff;padding:48px 0 60px;margin-bottom:0}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 32px;
+  display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-sidebar-card{display:none}}
+.hero-breadcrumb{font-size:.8125rem;color:rgba(255,255,255,.75);margin-bottom:12px}
+.hero-breadcrumb a{color:rgba(255,255,255,.85)}
+.hero-title{font-size:clamp(1.6rem,3.5vw,2.25rem);font-weight:700;line-height:1.2;
+  letter-spacing:-.02em;margin-bottom:12px;text-wrap:balance}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.88);line-height:1.65;
+  max-width:580px;margin-bottom:20px}
+.hero-meta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+  font-size:.875rem;color:rgba(255,255,255,.8);margin-bottom:24px}
+.hero-pill{display:inline-flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
+  padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:500;color:#fff}
+.hero-pill.gold{background:rgba(220,170,50,.25);border-color:rgba(220,170,50,.5)}
+
+/* Sidebar card in hero */
+.hero-sidebar-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);
+  overflow:hidden;position:relative}
+.hero-card-body{padding:20px}
+.hero-card-features{display:flex;flex-direction:column;gap:8px}
+.hero-card-feat{display:flex;align-items:flex-start;gap:8px;font-size:.8375rem;color:var(--fg-m)}
+.hero-card-feat svg{flex-shrink:0;margin-top:2px;color:var(--fg-s)}
+
+/* ── Tab strip ── */
+.tab-strip{background:#fff;border-bottom:1px solid var(--border);
+  position:sticky;top:60px;z-index:90}
+.tab-inner{max-width:1200px;margin:0 auto;padding:0 32px;
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-link{font-size:.875rem;font-weight:500;color:var(--fg-s);padding:0 16px;
+  height:48px;display:flex;align-items:center;border-bottom:3px solid transparent;
+  white-space:nowrap;transition:color .15s,border-color .15s;cursor:pointer}
+.tab-link:hover{color:var(--blue);text-decoration:none}
+.tab-link.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+
+/* ── Two-column body ── */
+.body-grid{display:grid;grid-template-columns:1fr 320px;gap:32px;padding-top:36px}
+@media(max-width:900px){.body-grid{grid-template-columns:1fr}.body-sidebar{display:none}}
+.body-main{min-width:0}
+.body-sidebar{align-self:start;position:sticky;top:120px}
+
+/* ── Section blocks ── */
+.section-block{background:#fff;border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:28px;margin-bottom:20px;
+  box-shadow:var(--shadow-sm)}
+.section-block h2{font-size:1.125rem;font-weight:700;color:var(--fg);
+  margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-s)}
+.section-block p{font-size:.9375rem;color:var(--fg-m);line-height:1.65;margin-bottom:10px}
+.section-block ul,.section-block ol{padding-left:1.4em;display:flex;flex-direction:column;gap:7px}
+.section-block li{font-size:.9375rem;color:var(--fg-m);line-height:1.6}
+
+/* ── Callouts ── */
+.callout{border-radius:var(--r);padding:14px 18px;margin:12px 0;
+  border-left:4px solid;display:flex;flex-direction:column;gap:4px}
+.callout-label{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.callout-text{font-size:.9rem;line-height:1.6;color:var(--fg)}
+.callout.green{background:var(--green-bg);border-color:var(--green)}
+.callout.green .callout-label{color:#3D6B40}
+.callout.yellow{background:var(--yellow-bg);border-color:var(--yellow)}
+.callout.yellow .callout-label{color:var(--yellow)}
+.callout.blue{background:#EEF4FF;border-color:var(--blue)}
+.callout.blue .callout-label{color:var(--blue)}
+
+/* ── Challenge box ── */
+.challenge-box{background:#EEF4FF;border:1px solid #BBCEF4;
+  border-radius:var(--r-lg);padding:22px;margin-top:8px}
+.challenge-box p{font-size:.9375rem;color:var(--fg-m);line-height:1.65}
+
+/* ── Buttons ── */
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:#fff;
+  color:var(--blue);font-weight:600;font-size:.9375rem;padding:9px 20px;
+  border-radius:var(--r);border:1.5px solid var(--blue);transition:background .15s}
+.btn-ghost:hover{background:#EEF4FF;text-decoration:none}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+/* ── Chips ── */
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;font-weight:600;
+  padding:3px 10px;border-radius:20px;border:1px solid #B8D4B8;background:#F0F6F0;color:#3D6B40}
+.chip.tier{background:var(--yellow-bg);color:var(--yellow);border-color:#DFC87A}
+.chip.gold{background:#FDF3DC;color:#7A5A10;border-color:#E8C96A}
+
+/* ── Gallery items ── */
+.gallery-item{display:flex;align-items:center;gap:14px;padding:16px 18px;
+  background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);
+  margin-bottom:12px;text-decoration:none;color:inherit;transition:background .12s}
+.gallery-item:hover{background:#F3F7F3;text-decoration:none}
+.gallery-icon{width:40px;height:40px;border-radius:var(--r);display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700;letter-spacing:.04em}
+.gallery-icon.pdf{background:#FDECEA;color:#C0392B}
+.gallery-icon.pptx{background:#FDF0E6;color:#C05000}
+.gallery-info{flex:1;min-width:0}
+.gallery-title{font-size:.9375rem;font-weight:600;color:var(--fg);margin-bottom:3px}
+.gallery-meta{font-size:.8rem;color:var(--fg-s)}
+.gallery-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.gallery-empty{border:1.5px dashed var(--border);border-radius:var(--r-lg);
+  padding:40px 24px;text-align:center;color:var(--fg-xs)}
+.gallery-empty-title{font-size:.9375rem;font-weight:600;color:var(--fg-s);margin-bottom:6px}
+.gallery-empty-sub{font-size:.85rem;line-height:1.6}
+.gallery-add-hint{margin-top:20px;background:#F5F6F5;border-radius:var(--r-lg);
+  padding:16px 18px;text-align:left}
+.gallery-add-hint h3{font-size:.875rem;font-weight:700;color:var(--fg);margin-bottom:8px}
+.gallery-add-hint code{font-family:monospace;font-size:.82rem;background:#E8EBE8;
+  padding:1px 5px;border-radius:3px;color:var(--fg)}
+.gallery-add-hint p{font-size:.85rem;color:var(--fg-m);line-height:1.6;margin-bottom:6px}
+
+/* ── Format cards ── */
+.format-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+@media(max-width:600px){.format-grid{grid-template-columns:1fr}}
+.format-card{background:#F8FAF8;border:1px solid var(--border-s);border-radius:var(--r-lg);padding:16px}
+.format-time{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--fg-xs);margin-bottom:5px}
+.format-title{font-size:.9375rem;font-weight:600;color:var(--fg);margin-bottom:5px}
+.format-desc{font-size:.85rem;color:var(--fg-m);line-height:1.5}
+
+/* ── Rubric table ── */
+.rubric-wrap{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-top:4px}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.875rem}
+.rubric-table th{background:#F5F6F5;font-weight:600;color:var(--fg-m);
+  padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid var(--border-s);
+  color:var(--fg-m);vertical-align:top}
+.rubric-table tr:last-child td{border-bottom:none}
+.rubric-table td:first-child{font-weight:600;color:var(--fg);white-space:nowrap}
+
+/* ── Sidebar cards ── */
+.sidebar-card{background:#fff;border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+.sidebar-card h3{font-size:.9375rem;font-weight:700;color:var(--fg);margin-bottom:14px}
+.sidebar-feat{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;
+  font-size:.875rem;color:var(--fg-m);line-height:1.5}
+.sidebar-feat-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+
+/* ── Session nav ── */
+.session-nav{display:flex;justify-content:space-between;padding:20px 0;
+  border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;gap:12px}
+.nav-arrow{font-size:.875rem;font-weight:500;color:var(--blue)}
+
+@media(max-width:600px){
+  .hero-inner,.body-grid{grid-template-columns:1fr}
+  .hero-sidebar-card,.body-sidebar{display:none}
+  .page-wrap,.topbar-inner{padding-left:16px;padding-right:16px}
+}
+</style>
+</head><body>
+
+<div class="topbar"><div class="topbar-inner">
+  <a class="site-brand" href="index.html"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="28" height="28" rx="6" fill="#AEC8AE"/>
+<text x="14" y="20" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700" font-size="14" fill="#252825">AI</text>
+</svg> AI for MD-PhD</a>
+  <nav class="topnav"><a href="index.html">Home</a><a href="resources.html">Resources</a><a href="s0.html">S0</a><a href="s1.html">S1</a><a href="s2.html">S2</a><a href="s3.html">S3</a><a href="s4.html">S4</a><a href="s5.html">S5</a><a href="s6.html">S6</a><a href="s7.html">S7</a><a href="s8.html">S8</a><a href="capstone.html" class="active">Capstone</a></nav>
+  <div class="topnav-right">
+    <a class="btn-enroll" href="https://github.com/Yonatanzor/ai-workshop" target="_blank"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</a>
+  </div>
+</div></div>
+
+<div class="course-hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-breadcrumb">
+        <a href="index.html">AI for MD-PhD</a> &rsaquo; Capstone Showcase
+      </div>
+      <h1 class="hero-title">Capstone Showcase</h1>
+      <p class="hero-sub">6-minute live demos. What you built, what broke, and what you learned.</p>
+      <div class="hero-meta-row">
+        <span><svg width="16" height="16" style="display:inline-block;vertical-align:middle;flex-shrink:0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 90 min</span>
+        <span class="hero-pill">&#127891; Final session</span>
+        <span class="hero-pill gold">&#9733; Showcase day</span>
+      </div>
+    </div>
+    <div class="hero-sidebar-card">
+      <div class="hero-card-body">
+        <div style="font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-xs);margin-bottom:12px">What to bring</div>
+        <div class="hero-card-features">
+          <div class="hero-card-feat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Your working (or broken) AI workflow</div>
+          <div class="hero-card-feat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> One entry from your failure log</div>
+          <div class="hero-card-feat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> A named data tier</div>
+          <div class="hero-card-feat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Your verification plan</div>
+          <div class="hero-card-feat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No slides required</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-strip">
+  <div class="tab-inner">
+    <a class="tab-link active" href="#objectives" data-tab="objectives">Overview</a>
+    <a class="tab-link" href="#format" data-tab="format">Format</a>
+    <a class="tab-link" href="#challenge" data-tab="challenge">Challenge</a>
+    <a class="tab-link" href="#gallery" data-tab="gallery">Gallery</a>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="body-grid">
+    <div class="body-main">
+
+      <div class="section-block" id="objectives">
+        <h2>Learning objectives</h2>
+        <ol>
+          <li>Present a working (or instructively broken) AI workflow to peers and instructors</li>
+          <li>Reflect on what you learned across the full 9-session arc</li>
+          <li>Give and receive rigorous critique &mdash; one sharp question per demo</li>
+          <li>Document what you would do differently if you started again</li>
+        </ol>
+        <div class="callout green" style="margin-top:16px">
+          <span class="callout-label">Note</span>
+          <span class="callout-text">The capstone is not about polish. A broken tool with an honest postmortem is worth more than a smooth demo with no reflection. Show your work &mdash; including the parts that failed.</span>
+        </div>
+      </div>
+
+      <div class="section-block" id="format" style="display:none">
+        <h2>The 6-minute format</h2>
+        <div class="format-grid">
+          <div class="format-card">
+            <div class="format-time">0 &ndash; 2 min</div>
+            <div class="format-title">The problem</div>
+            <div class="format-desc">What research problem does this solve? Why AI, and not a spreadsheet?</div>
+          </div>
+          <div class="format-card">
+            <div class="format-time">2 &ndash; 4 min</div>
+            <div class="format-title">Live demo</div>
+            <div class="format-desc">Show it running. Name the data tier. Show at least one real output.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-time">4 &ndash; 5 min</div>
+            <div class="format-title">What broke</div>
+            <div class="format-desc">One honest failure from your log. What did you learn from it?</div>
+          </div>
+          <div class="format-card">
+            <div class="format-time">5 &ndash; 6 min</div>
+            <div class="format-title">Q&amp;A</div>
+            <div class="format-desc">One sharp question from a peer, assigned in advance.</div>
+          </div>
+        </div>
+        <div style="margin-top:20px">
+          <h2 style="border-bottom:1px solid var(--border-s);padding-bottom:12px;margin-bottom:14px">Evaluation rubric</h2>
+          <div class="rubric-wrap">
+            <table class="rubric-table">
+              <thead>
+                <tr>
+                  <th>Criterion</th>
+                  <th>Strong</th>
+                  <th>Acceptable</th>
+                  <th>Needs work</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Does it run?</td>
+                  <td>Live demo, real output</td>
+                  <td>Screenshots only</td>
+                  <td>Not shown</td>
+                </tr>
+                <tr>
+                  <td>Data tier</td>
+                  <td>Named and justified</td>
+                  <td>Named, not justified</td>
+                  <td>Not addressed</td>
+                </tr>
+                <tr>
+                  <td>Verification</td>
+                  <td>Tested, evidence shown</td>
+                  <td>Plan described</td>
+                  <td>Not addressed</td>
+                </tr>
+                <tr>
+                  <td>Failure log</td>
+                  <td>Specific, insightful</td>
+                  <td>Mentioned</td>
+                  <td>Not addressed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-block" id="challenge" style="display:none">
+        <h2>Critical-thinking challenge</h2>
+        <div class="challenge-box">
+          <p>Each presenter is assigned a peer reviewer in advance. The reviewer&rsquo;s job: ask the one question the presenter least wants to hear. No softballs. The question is recorded in both participants&rsquo; failure logs.</p>
+        </div>
+        <div class="callout yellow" style="margin-top:16px">
+          <span class="callout-label">Before the session</span>
+          <span class="callout-text">Review your partner&rsquo;s S8 project scope (task, data tier, verification plan) and prepare one sharp critical question. Write it down before you arrive.</span>
+        </div>
+      </div>
+
+      <div class="section-block" id="gallery" style="display:none">
+        <h2>Project gallery</h2>
+        <p style="color:var(--fg-s);margin-bottom:20px">Projects presented at the showcase &mdash; added after the session.</p>
+
+        <!-- GALLERY ITEMS — add entries here after each showcase.
+             Copy one of the blocks below, uncomment it, and fill in the details.
+
+        <a class="gallery-item" href="Capstone/YOUR_FILE.pdf" target="_blank">
+          <div class="gallery-icon pdf">PDF</div>
+          <div class="gallery-info">
+            <div class="gallery-title">Project title here</div>
+            <div class="gallery-meta">Student name · Tool used</div>
+            <div class="gallery-chips">
+              <span class="chip tier">Tier 1</span>
+              <span class="chip">RAG</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="gallery-item" href="Capstone/YOUR_FILE.pptx" target="_blank">
+          <div class="gallery-icon pptx">PPTX</div>
+          <div class="gallery-info">
+            <div class="gallery-title">Project title here</div>
+            <div class="gallery-meta">Student name · Tool used</div>
+            <div class="gallery-chips">
+              <span class="chip tier">Tier 2</span>
+              <span class="chip">Agent</span>
+            </div>
+          </div>
+        </a>
+        -->
+
+        <div class="gallery-empty">
+          <div class="gallery-empty-title">No projects yet</div>
+          <div class="gallery-empty-sub">Projects will appear here after the first showcase session.</div>
+          <div class="gallery-add-hint">
+            <h3>How to add a project after the showcase</h3>
+            <p>1. Create a <code>Capstone/</code> folder in the repo and add the PDF or PPTX file there.</p>
+            <p>2. In this file (<code>capstone.html</code>), find the <code>GALLERY ITEMS</code> comment block above.</p>
+            <p>3. Copy one of the commented-out <code>&lt;a class="gallery-item"&gt;</code> blocks, uncomment it, and fill in the title, student name, tool, data tier, and file path.</p>
+            <p>4. Commit and push. The gallery updates immediately.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="session-nav">
+        <a class="nav-arrow" href="s8.html">&larr; S8: From Workshop to Project</a>
+        <span></span>
+      </div>
+
+    </div><!-- /body-main -->
+
+    <div class="body-sidebar">
+      <div class="sidebar-card">
+        <h3>Session details</h3>
+        <div class="sidebar-feat"><span class="sidebar-feat-icon">&#x23F1;</span> 90 minutes</div>
+        <div class="sidebar-feat"><span class="sidebar-feat-icon">&#127891;</span> Final session of the workshop</div>
+        <div class="sidebar-feat"><span class="sidebar-feat-icon">&#x1F4CB;</span> No pre-reading required</div>
+        <div class="sidebar-feat"><span class="sidebar-feat-icon">&#x1F512;</span> Data tier depends on project</div>
+      </div>
+      <div class="sidebar-card">
+        <h3>What to prepare</h3>
+        <div class="sidebar-feat"><span class="sidebar-feat-icon">&#x2714;</span> A live (or recorded) demo of your AI workflow</div>
+        <div class="sidebar-feat"><span class="sidebar-feat-icon">&#x2714;</span> One failure-log entry to share</div>
+        <div class="sidebar-feat"><span class="sidebar-feat-icon">&#x2714;</span> One sharp question for your assigned peer</div>
+      </div>
+    </div><!-- /body-sidebar -->
+
+  </div><!-- /body-grid -->
+</div><!-- /page-wrap -->
+
+<script>
+  var tabs = document.querySelectorAll('.tab-link[data-tab]');
+  var sections = ['objectives','format','challenge','gallery'];
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(e){
+      e.preventDefault();
+      var t = this.dataset.tab;
+      tabs.forEach(function(x){x.classList.remove('active')});
+      tab.classList.add('active');
+      sections.forEach(function(s){
+        var el = document.getElementById(s);
+        if(el) el.style.display = (s===t)?'block':'none';
+      });
+    });
+  });
+</script>
+</body></html>
